@@ -21,7 +21,7 @@ class QuestionsController extends Controller
     {
         $user = auth()->user();
 
-        $questions = $user->questions;
+        $questions = $user->questions()->orderBy('created_at','desc')->get();
 
         return view('questions.index', compact('questions'));
     }
@@ -42,6 +42,14 @@ class QuestionsController extends Controller
 
     public function show(Question $question)
     {
-        return view('questions.show', compact('question'));
+        //https://github.com/yooper/php-text-analysis
+
+        $npl = [];
+
+        $npl['tokens'] = $tokens = tokenize($question->question);
+        $npl['normalized_tokens'] = $normalized_tokens = normalize_tokens($tokens);
+        $npl['freq_dist'] = $freq_dist = freq_dist($normalized_tokens);
+
+        return view('questions.show', compact('question','npl'));
     }
 }
