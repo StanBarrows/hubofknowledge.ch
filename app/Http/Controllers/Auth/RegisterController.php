@@ -31,6 +31,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
+    public function showRegistrationForm()
+    {
+        return redirect()->route('questions.index');
+    }
+
     /**
      * Create a new controller instance.
      *

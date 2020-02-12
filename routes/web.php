@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', 'StartController@index')->name('start.index');
+
+Route::get('/questions/index', 'QuestionsController@index')->name('questions.index');
+Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
+Route::get('/questions/show/{question}', 'QuestionsController@show')->name('questions.show');
+
+
