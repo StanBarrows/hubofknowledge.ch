@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class StartController extends Controller
+use App\Models\User;
+
+class UsersController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,13 +16,12 @@ class StartController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('start.index');
+        $users = User::with('roles')->orderBy('name','asc')->get();
+
+        return view('users.index', compact('users'));
     }
+
+
 }
