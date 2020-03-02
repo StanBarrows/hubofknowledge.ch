@@ -2,54 +2,81 @@
 
 @section('content')
 
-    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full">
-            <div>
+    <div class="min-h-screen bg-white flex">
+        <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="mx-auto w-full max-w-sm">
+                <div>
+                    <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">
+                        {{ __('auth.sign_in_title') }}
+                    </h2>
+                </div>
 
-{{--
-                <img class="mx-auto h-12" src="{{ asset('images/hok_square_1000px.png') }}" alt="{{ config('app.name') }}" />
---}}
+                <div class="mt-8">
+                    <div class="mt-6">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div>
+                                <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
+                                    {{ __('E-Mail Address') }}
+                                </label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input id="email" name="email" type="email" placeholder="{{ old('email') }}"
+                                           required
+                                           class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                </div>
 
-                <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                    Sign in to your account
-                </h2>
+                                @error('email')
+                                <p class="text-red-500 text-xs italic mt-1">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
+                                    {{ __('Password') }}
+                                </label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input id="password" name='password' type="password" required
+                                           class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                </div>
+
+                                @error('password')
+                                <p class="text-red-500 text-xs italic mt-1">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <div class="mt-6 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox"
+                                           class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"/>
+                                    <label for="remember" class="ml-2 block text-sm leading-5 text-gray-900">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="mt-6">
+              <span class="block w-full rounded-md shadow-sm">
+                <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                    {{ __('auth.sign_in_button') }}
+                </button>
+              </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <form class="mt-8" method="POST" action="{{ route('login') }}">
-                @csrf
-
-                <input type="hidden" name="remember" value="true" />
-                <div class="rounded-md shadow-sm">
-                    <div>
-                        <input aria-label="Email address" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Email address" />
-                    </div>
-                    <div class="-mt-px">
-                        <input aria-label="Password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Password" />
-                    </div>
-                </div>
-
-                <div class="mt-6 flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
-                        <label for="remember" class="ml-2 block text-sm leading-5 text-gray-900">
-                            {{ __('Remember Me') }}
-                        </label>
-                    </div>
-
-                </div>
-
-                <div class="mt-6">
-                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-          <span class="absolute left-0 inset-y pl-3">
-            <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-                        Sign in
-                    </button>
-                </div>
-            </form>
+        </div>
+        <div class="hidden lg:block relative w-0 flex-1">
+            <img class="absolute inset-0 h-full w-full object-cover"
+                 src="{{ asset('images/hok_login_background.jpg') }}" alt="{{ config('app.name') }}"/>
         </div>
     </div>
+
 
 @endsection

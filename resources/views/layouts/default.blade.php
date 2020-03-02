@@ -11,13 +11,20 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
 
+    @include('layouts.partials.favicon')
+
 </head>
 
 <body>
 
-@yield('content')
+<div class="min-h-screen bg-gray-100">
+    @yield('content')
+</div>
 
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.0/dist/alpine.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+<script src="https://kit.fontawesome.com/0930b50369.js" crossorigin="anonymous"></script>
+
+@includeWhen(app()->isProduction(), 'layouts.partials.analytics')
 
 </body>
 </html>

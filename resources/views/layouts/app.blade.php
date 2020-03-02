@@ -8,34 +8,33 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
-
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
+
+    @include('layouts.partials.favicon')
 
 </head>
 
 <body>
 
-<div class="bg-gray-800 pb-32">
+<div class="min-h-screen bg-gray-100">
+
     @include('layouts.partials.navigation')
-    <header class="py-10">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl leading-9 font-bold text-white">
-                {{ config('app.name') }}
-            </h2>
+    <div class="py-10">
 
-        </div>
-
-    </header>
-</div>
-<main class="-mt-32">
-    <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
         @yield('content')
-    </div>
-</main>
 
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.0/dist/alpine.js" defer></script>
+    </div>
+
+    @include('layouts.partials.footer')
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+<script src="https://kit.fontawesome.com/0930b50369.js" crossorigin="anonymous"></script>
+
+@includeWhen(app()->isProduction(), 'layouts.partials.analytics')
 
 </body>
 </html>
