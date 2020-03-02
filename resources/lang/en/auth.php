@@ -13,6 +13,9 @@ return [
     |
     */
 
+    'sign_in_title' => ' Sign in to your account',
+    'sign_in_button' => 'Sign in',
+
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

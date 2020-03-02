@@ -7,49 +7,34 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>{{ config('app.name') }}</title>
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
+
+    @include('layouts.partials.favicon')
+
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none">
-<div id="app">
-    <nav class="bg-blue-900 shadow mb-8 py-6">
-        <div class="container mx-auto px-6 md:px-0">
-            <div class="flex items-center justify-center">
-                <div class="mr-6">
-                    <a href="{{ route('start.index') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
 
-                    <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('questions.index') }}">Questions</a>
+<body>
 
-                </div>
+<div class="min-h-screen bg-gray-100">
 
+    @include('layouts.partials.navigation')
 
-                <div class="flex-1 text-right">
-                    @guest
-                        <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    @else
-                        <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
+    <div class="py-10">
 
-                        <a href="{{ route('logout') }}"
-                           class="no-underline hover:underline text-gray-300 text-sm p-3"
-                           onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form>
-                    @endguest
-                </div>
-            </div>
-        </div>
-    </nav>
+        @yield('content')
 
-    @yield('content')
+    </div>
+
+    @include('layouts.partials.footer')
+
 </div>
 
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+<script src="https://kit.fontawesome.com/0930b50369.js" crossorigin="anonymous"></script>
+
+@includeWhen(app()->isProduction(), 'layouts.partials.analytics')
+
 </body>
 </html>

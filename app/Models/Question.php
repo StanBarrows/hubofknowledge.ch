@@ -10,7 +10,6 @@ class Question extends Model
 {
     use SoftDeletes;
 
-
     /**
      * Get the route key for the model.
      *
@@ -20,7 +19,6 @@ class Question extends Model
     {
         return 'uuid';
     }
-
 
     /**
      * The attributes that are mass assignable.

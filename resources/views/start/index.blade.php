@@ -1,50 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex items-center">
-        <div class="sm:w-ful md:w-1/2 mx-auto">
 
-            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+    <header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold leading-tight text-gray-900">
+                {{ __('start.title') }}
+            </h2>
+        </div>
+    </header>
 
-                <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                    Aks a question
-                </div>
-
-                <div class="w-full p-6">
-
-                    @if(flash()->message)
-
-                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-                            <p>{{ flash()->message }}</p>
-                        </div>
-
-                    @endif
-
-                    <form class="w-full p-6" method="POST" action="{{ route('questions.ask') }}">
-                        @csrf
-
-                        <div class="flex flex-wrap mb-6">
-                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
-                                Your question:
-                            </label>
-
-                            <input id="question" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" name="question" value="{{ old('question') }}" required autofocus>
-
-                            @error('email')
-                            <p class="text-red-500 text-xs italic mt-4">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
-
-                        <div class="flex flex-wrap items-center">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                               Ask
-                            </button>
-                        </div>
-                    </form>
+    <main>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="px-4 py-8 sm:px-0">
+                <div class="bg-white">
+                    <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                        <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+                            Want product news and updates?
+                            <br class="hidden sm:inline" />
+                            <span class="text-indigo-600">Sign up for our newsletter.</span>
+                        </h2>
+                        <form class="mt-8 sm:flex">
+                            <input aria-label="Email address" type="email" required class="appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:max-w-xs" placeholder="Enter your email" />
+                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                                <button class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                    Notify me
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
 @endsection

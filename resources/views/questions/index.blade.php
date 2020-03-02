@@ -1,44 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex items-center">
-        <div class="sm:w-ful md:w-1/2 mx-auto">
-            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
 
-                <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                   Questions
-                </div>
+    <header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold leading-tight text-gray-900">
+                {{ __('questions.title') }}
+            </h2>
+        </div>
+    </header>
 
-                <div class="w-full p-6 ">
+    <main>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="px-4 py-8 sm:px-0">
+                <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
                     @if(!empty($questions) && $questions->count())
-                        <table class="table-auto w-full">
+                        <table class="min-w-full">
                             <thead>
                             <tr>
-                                <th class="px-4 py-2">question</th>
-                                <th class="px-4 py-2">created at</th>
-                                <th class="px-4 py-2"></th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('questions.table.head.questions') }}
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('questions.table.head.created_at') }}
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($questions as $question)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $question->question }}</td>
-                                    <td class="border px-4 py-2">{{ $question->created_at->diffForHumans() }}</td>
-                                    <td class="border px-4 py-2">
-                                        <a class="text-blue-700" href="{{ route('questions.show', $question) }}">show</a>
+                                <tr class="bg-white">
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                                        {{ $question->question }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                                        {{ $question->created_at->diffForHumans() }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                        <a href="{{ route('questions.show', $question) }}"
+                                           class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Show</a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     @else
-
-                        <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
-                            <p>No questions available!</p>
-                        </div>
+                        {{ __('questions.table.empty') }}
                     @endif
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
 @endsection
