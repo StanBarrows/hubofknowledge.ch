@@ -54,8 +54,8 @@ class UnassignRoleCommand extends Command
         }
         catch (\Exception $exception)
         {
-            Log::error('App\Console\Commands\UnassignRoleCommand');
-
+            Log::error($exception->getMessage());
+            
             $this->info("Something went wrong!");
         }
     }

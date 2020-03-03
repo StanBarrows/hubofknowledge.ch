@@ -55,7 +55,7 @@ class CreateUserCommand extends Command
 
         } catch (\Exception $exception) {
 
-            Log::error('App\Console\Commands\CreateUserCommand');
+            Log::error($exception->getMessage());
 
             $this->info("Something went wrong!");
         }
