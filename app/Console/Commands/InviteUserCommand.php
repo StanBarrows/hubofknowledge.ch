@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 
 class InviteUserCommand extends Command
@@ -30,26 +29,18 @@ class InviteUserCommand extends Command
      */
     public function handle()
     {
-        try {
+        $email = $this->choice(
+            'Which user would you like to invite?',
+            User::all()->pluck('email')->toArray()
+        );
 
-            $email = $this->choice(
-                'Which user would you like to invite?',
-                User::all()->pluck('email')->toArray()
-            );
+        $user = User::whereEmail($email)->first();
 
-            $user = User::whereEmail($email)->first();
+        $token = Password::getRepository()->create($user);
 
-            $token = Password::getRepository()->create($user);
+        $user->sendPasswordResetNotification($token);
 
-            $user->sendPasswordResetNotification($token);
+        $this->info("You've successfully invited $user->name!");
 
-            $this->info("You've successfully invited $user->name!");
-
-        } catch (\Exception $exception) {
-
-            Log::error($exception->getMessage());
-
-            $this->info("Something went wrong!");
-        }
     }
 }
