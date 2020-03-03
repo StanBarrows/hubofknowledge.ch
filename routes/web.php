@@ -19,6 +19,9 @@ Route::get('/questions/index', 'QuestionsController@index')->name('questions.ind
 Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
 Route::get('/questions/show/{question}', 'QuestionsController@show')->name('questions.show');
 
-Route::get('/users/index', 'UsersController@index')->name('users.index');
 Route::get('/profile', 'ProfileController@index')->name('profile.index');
 
+
+//Administrator
+Route::get('/users/index', 'UsersController@index')->name('users.index');
+Route::get('/documentaion', 'DocumentationController@index')->name('documentation.index');

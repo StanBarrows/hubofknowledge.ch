@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "graham-campbell/markdown": "^12.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "spatie/laravel-flash": "^1.4",

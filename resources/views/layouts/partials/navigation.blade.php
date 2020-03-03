@@ -4,14 +4,11 @@
             <div class="flex">
 
                 <div class="hidden md:ml-6 md:flex">
-                    <a href="{{ route('start.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                    <a href="{{ route('start.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{ Route::current()->getName() !== 'start.index' ? 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300' : 'border-indigo-500 text-gray-900 focus:border-indigo-700' }}">
                         {{ __('layouts.navigation.start') }}
                     </a>
-                    <a href="{{ route('questions.index') }}" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                    <a href="{{ route('questions.index') }}" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{ Route::current()->getName() !== 'questions.index' ? 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300' : 'border-indigo-500 text-gray-900 focus:border-indigo-700' }}">
                         {{ __('layouts.navigation.questions') }}
-                    </a>
-                    <a href="{{ route('users.index') }}" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                        {{ __('layouts.navigation.users') }}
                     </a>
                 </div>
             </div>
@@ -25,10 +22,25 @@
                                 <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->gravatar }}" alt="{{ Auth::user()->name }}" />
                             </button>
                         </div>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
-                            <div class="py-1 rounded-md bg-white shadow-xs">
-                                <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"> {{ __('layouts.navigation.profile') }}</a>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">{{ __('layouts.navigation.sign_out') }}</a>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+                            <div class="rounded-md bg-white shadow-xs">
+                                <div class="px-4 py-3">
+                                    <p class="text-sm leading-5">
+                                        Signed in as
+                                    </p>
+                                    <p class="text-xs leading-5 font-medium text-gray-900">
+                                        {{ Auth::user()->email }}
+                                    </p>
+                                </div>
+                                <div class="border-t border-gray-100"></div>
+                                <div class="py-1">
+                                    <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">{{ __('layouts.navigation.profile') }}</a>
+                                    <a target="_blank" href="mailto:{{ config('hok.support_email') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">{{ __('layouts.navigation.support') }}</a>
+                                </div>
+                                <div class="border-t border-gray-100"></div>
+                                <div class="py-1">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">{{ __('layouts.navigation.sign_out') }}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,7 +53,6 @@
         <div class="pt-2 pb-3">
             <a href="{{ route('start.index') }}" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">{{ __('layouts.navigation.start') }}</a>
             <a href="{{ route('questions.index') }}" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">{{ __('layouts.navigation.questions') }}</a>
-            <a href="{{ route('users.index') }}" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">{{ __('layouts.navigation.users') }}</a>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-200">
             <div class="flex items-center px-4 sm:px-6">

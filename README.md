@@ -1,12 +1,23 @@
-hok.ch
----
 # Administrator
-## Roles 
-### Assign roles to a user
+
+## Users
+
+### Create users
+~~~~
+php artisan  user:create
+~~~~
+
+### Reset password
+~~~~
+php artisan  password:reset
+~~~~
+
+### Assign a role to a user
 ~~~~
 php artisan  role:assign
 ~~~~
-### Unassign roles to a user
+
+### Unassing a role from a user
 ~~~~
 php artisan role:unassign 
 ~~~~
