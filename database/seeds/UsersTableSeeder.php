@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,40 +14,56 @@ class UsersTableSeeder extends Seeder
 
     public function run()
     {
-        User::create([
+        $administrator = \Spatie\Permission\Models\Role::whereName('administrator')->first();
+        $expert = \Spatie\Permission\Models\Role::whereName('expert')->first();
+
+        $sebastian = User::create([
             'name' => 'Sebastian Fix',
             'email' => 'sebastian.fix@students.fhnw.ch',
-            'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
 
-        User::create([
+        $sebastian->assignRole($administrator);
+
+        $enkelejda = User::create([
            'name' => 'Miho Enkelejda',
            'email' => 'enkelejda.miho@fhnw.ch',
-           'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
 
-        User::create([
+        $enkelejda->assignRole($administrator);
+        $enkelejda->assignRole($expert);
+
+
+        $wenderbordn = User::create([
             'name' => 'Sebastian Wendeborn',
             'email' => 'sebastian.wendeborn@fhnw.ch',
-            'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
+
+        $wenderbordn->assignRole($expert);
 
         User::create([
             'name' => 'Teyfik Agac',
             'email' => 'teyfik.agac@students.fhnw.ch',
-            'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
 
         User::create([
             'name' => 'Deniz Tosoni',
             'email' => 'deniz.tosoni@students.fhnw.ch',
-            'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
 
         User::create([
             'name' => 'Angelina Markl',
             'email' => 'angelina.markl@students.fhnw.ch',
-            'password' => bcrypt('HOK2020$$')
+            'password' => $this->getPassword()
         ]);
+    }
+
+    protected function getPassword()
+    {
+        return bcrypt(Str::random(16));
     }
 }

@@ -13,6 +13,17 @@
 
     @include('layouts.partials.favicon')
 
+    @yield('styles')
+
+    <style>
+
+        [disabled] {
+            background-color: #e6e6e6;
+            cursor: not-allowed;
+        }
+
+    </style>
+
 </head>
 
 <body>

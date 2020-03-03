@@ -32,22 +32,22 @@
                                         </span>
                                 </div>
                             </div>
-                            <div class="sm:col-span-3">
-                                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">
+                            <div class="sm:col-span-6">
+                                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('profile.form.name.label') }}
                                 </label>
                                 <div class="mt-1 rounded-md shadow-sm">
                                     <input value="{{ Auth::user()->name }}" id="name"
-                                           class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                           class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 " disabled/>
                                 </div>
                             </div>
-                            <div class="sm:col-span-3">
-                                <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">
+                            <div class="sm:col-span-6">
+                                <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('profile.form.email.label') }}
                                 </label>
                                 <div class="mt-1 rounded-md shadow-sm">
                                     <input value="{{ Auth::user()->email }}" id="email"
-                                           class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                           class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 disabled:bg-gray-300" disabled/>
                                 </div>
                             </div>
                         </div>

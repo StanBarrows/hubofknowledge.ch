@@ -5,7 +5,6 @@
                 <a href="{{ route('start.index') }}"><img class="h-10" src="{{ asset('images/hok_logo.png') }}" alt="{{ config('app.name') }}" /></a>
                 <p class="mt-8 text-gray-500 text-base leading-6">
                     A place where people exchange knowledge, experiences and ideas on how to improve services, and create connections with peers and experts in a secure environment
-
                 </p>
                 <div class="mt-8 flex">
                     <a target="_blank" href="{{ config('hok.github_repository_url') }}" class="ml-6 text-gray-400 hover:text-gray-500">
@@ -19,26 +18,40 @@
             <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
 
                 <div class="md:grid md:grid-cols-2 md:gap-8">
+                    @role('administrator')
                     <div>
                         <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
                             {{ __('layouts.footer.administrator.title') }}
                         </h4>
                         <ul class="mt-4">
+
                             <li>
+                                <a href="{{ route('documentation.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    {{ __('layouts.footer.administrator.documentation') }}
+                                </a>
+                            </li>
+
+                            <li class="mt-4">
                                 <a href="{{ route('users.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                     {{ __('layouts.footer.administrator.users') }}
                                 </a>
                             </li>
                         </ul>
                     </div>
+                    @endrole
                     <div class="mt-12 md:mt-0">
                         <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
                             {{ Auth::user()->name }}
                         </h4>
                         <ul class="mt-4">
                             <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                <a href="{{ route('profile.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                     {{ __('layouts.footer.profile') }}
+                                </a>
+                            </li>
+                            <li class="mt-4">
+                                <a target="_blank" href="mailto:{{ config('hok.support_email') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    {{ __('layouts.footer.support') }}
                                 </a>
                             </li>
                             <li class="mt-4">
@@ -58,7 +71,7 @@
         </div>
         <div class="mt-12 border-t border-gray-200 pt-8">
             <p class="text-base leading-6 text-gray-400 xl:text-center">
-                &copy; 2020 Sebastian Fix. All rights reserved.
+                &copy; 2020 <a target="_blank" href="mailto:{{ config('hok.support_email') }}" class="font-medium text-indigo-500">Sebastian Fix</a>. All rights reserved.
             </p>
         </div>
     </div>

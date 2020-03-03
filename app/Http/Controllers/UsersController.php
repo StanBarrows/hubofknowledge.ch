@@ -13,12 +13,12 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','role:administrator']);
     }
 
     public function index()
     {
-        $users = User::with('roles')->orderBy('name','asc')->get();
+        $users = User::with('roles','authentications')->orderBy('name','asc')->get();
 
         return view('users.index', compact('users'));
     }
