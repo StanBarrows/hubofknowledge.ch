@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 
-class InviteUser extends Command
+class InviteUserCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -47,7 +47,7 @@ class InviteUser extends Command
 
         } catch (\Exception $exception) {
 
-            Log::error('App\Console\Commands\InviteUser');
+            Log::error('App\Console\Commands\InviteUserCommand');
 
             $this->info("Something went wrong!");
         }

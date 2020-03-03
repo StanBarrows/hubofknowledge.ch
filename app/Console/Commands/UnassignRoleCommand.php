@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Role;
 
-class UnassignRole extends Command
+class UnassignRoleCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -54,7 +54,7 @@ class UnassignRole extends Command
         }
         catch (\Exception $exception)
         {
-            Log::error('App\Console\Commands\UnassignRole');
+            Log::error('App\Console\Commands\UnassignRoleCommand');
 
             $this->info("Something went wrong!");
         }

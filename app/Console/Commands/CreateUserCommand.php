@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class CreateUser extends Command
+class CreateUserCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -55,7 +55,7 @@ class CreateUser extends Command
 
         } catch (\Exception $exception) {
 
-            Log::error('App\Console\Commands\CreateUser');
+            Log::error('App\Console\Commands\CreateUserCommand');
 
             $this->info("Something went wrong!");
         }
