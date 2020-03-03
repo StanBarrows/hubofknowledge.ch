@@ -1,20 +1,24 @@
-# Administrator
 
-## Users
+# Users
 
-### Create users
+### Create user
 ~~~~
-php artisan  user:create
+php artisan user:create
+~~~~
+
+### Invite a user
+~~~~
+php artisan user:invite
 ~~~~
 
 ### Reset password
 ~~~~
-php artisan  password:reset
+php artisan password:reset
 ~~~~
 
 ### Assign a role to a user
 ~~~~
-php artisan  role:assign
+php artisan role:assign
 ~~~~
 
 ### Unassing a role from a user

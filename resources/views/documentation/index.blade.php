@@ -2,6 +2,37 @@
 
 @section('styles')
 
+    <style>
+
+        h1 {
+            font-weight: bolder;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+        h2 {
+            font-weight: bolder;
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+
+        }
+
+        pre
+        {
+            margin-top: 0.5rem;
+            margin-bottom: 1.0rem;
+        }
+        code {
+
+        }
+
+    </style>
 @endsection
 
 @section('content')

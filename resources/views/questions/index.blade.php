@@ -45,8 +45,6 @@
                             @endforeach
                             </tbody>
                         </table>
-                    @else
-                        {{ __('questions.table.empty') }}
                     @endif
                 </div>
             </div>

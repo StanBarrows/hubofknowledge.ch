@@ -12,8 +12,6 @@ return [
             'questions' => 'Questions',
             'created_at' => 'Created at'
         ],
-
-        'empty' => 'No questions',
     ],
 
 

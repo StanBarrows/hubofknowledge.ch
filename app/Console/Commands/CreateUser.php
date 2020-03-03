@@ -22,17 +22,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $description = 'User creation';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'User create';
 
     /**
      * Execute the console command.
