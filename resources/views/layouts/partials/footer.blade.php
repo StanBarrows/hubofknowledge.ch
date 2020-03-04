@@ -16,30 +16,8 @@
                 </div>
             </div>
             <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-
                 <div class="md:grid md:grid-cols-2 md:gap-8">
-                    @role('administrator')
                     <div>
-                        <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
-                            {{ __('layouts.footer.administrator.title') }}
-                        </h4>
-                        <ul class="mt-4">
-
-                            <li>
-                                <a href="{{ route('documentation.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    {{ __('layouts.footer.administrator.documentation') }}
-                                </a>
-                            </li>
-
-                            <li class="mt-4">
-                                <a href="{{ route('users.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    {{ __('layouts.footer.administrator.users') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    @endrole
-                    <div class="mt-12 md:mt-0">
                         <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
                             {{ Auth::user()->name }}
                         </h4>
@@ -65,7 +43,45 @@
                             {{ csrf_field() }}
                         </form>
 
+
                     </div>
+                    @hasanyrole('expert')
+                    <div class="mt-12 md:mt-0">
+                        <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
+                            {{ __('layouts.footer.expert.title') }}
+                        </h4>
+                        <ul class="mt-4">
+                            <li>
+                                <a href="{{ route('associations.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    {{ __('layouts.footer.expert.associations') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @endhasanyrole
+                </div>
+
+                @hasanyrole('administrator')
+                <div class="md:grid md:grid-cols-2 md:gap-8">
+                    <div>
+                        <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
+                            {{ __('layouts.footer.administrator.title') }}
+                        </h4>
+                        <ul class="mt-4">
+                            <li>
+                                <a href="{{ route('users.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    {{ __('layouts.footer.administrator.users') }}
+                                </a>
+                            </li>
+
+                            <li class="mt-4">
+                                <a href="{{ route('documentation.index') }}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    {{ __('layouts.footer.administrator.documentation') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @endhasanyrole
                 </div>
             </div>
         </div>

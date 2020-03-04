@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AskQuestionRequest;
+use App\Http\Requests\CreateQuestionRequest;
+use App\Jobs\AssociateQuestionsJob;
 use App\Models\Question;
+use App\Models\User;
+use App\Rules\ExpertsAvailableRule;
 
 class QuestionsController extends Controller
 {
@@ -12,44 +15,44 @@ class QuestionsController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
     }
 
-    public function index()
+    public function create(CreateQuestionRequest $request)
     {
-        $user = auth()->user();
 
-        $questions = $user->questions()->orderBy('created_at','desc')->get();
+        if($this->validateExperts())
+        {
+            $user = auth()->user();
 
-        return view('questions.index', compact('questions'));
-    }
+            $question = Question::create([
+                'user_id' =>$user->id,
+                'body' => $request->body
+            ]);
 
-    public function ask(AskQuestionRequest $askQuestionRequest)
-    {
-        $user = auth()->user();
+            AssociateQuestionsJob::dispatch($question);
 
-        $question = Question::create([
-            'user_id' =>$user->id,
-            'question' => $askQuestionRequest->question
-        ]);
-
-        flash('Your questions was successfully submitted!');
+            //flash('Your associations was successfully submitted!');
+        }
+        else
+        {
+            flash('Currently no experts available!');
+        }
 
         return back();
     }
 
     public function show(Question $question)
     {
-        //https://github.com/yooper/php-text-analysis
-
-        $npl = [];
-
-        $npl['tokens'] = $tokens = tokenize($question->question);
-        $npl['normalized_tokens'] = $normalized_tokens = normalize_tokens($tokens);
-        $npl['freq_dist'] = $freq_dist = freq_dist($normalized_tokens);
-
-        return view('questions.show', compact('question','npl'));
+        return view('questions.show', compact('question'));
     }
+
+    protected function validateExperts()
+    {
+        return User::role('expert')->get()->count() > 0;
+    }
+
 }

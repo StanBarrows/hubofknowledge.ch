@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class UserAuthentication extends Model
 {
+    Use LogsActivity;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +17,8 @@ class UserAuthentication extends Model
     protected $fillable = [
         'user_id'
     ];
+
+    protected static $logAttributes = ['user_id','created_at','updated_at'];
 
     public function user()
     {

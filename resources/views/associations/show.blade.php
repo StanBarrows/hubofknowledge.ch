@@ -56,13 +56,44 @@
                                 </div>
                                 <div class="ml-4 mt-4 flex-shrink-0 flex">
                                     <p class="text-sm leading-5 text-gray-500">
-                                        <span class="font-bold">{{ $question->user->name }}</span> <span>{{ $answer->created_at->diffForHumans() }}</span>
+                                        <span class="font-bold">{{ $answer->user->name }}</span> <span>{{ $answer->created_at->diffForHumans() }}</span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 @endif
+
+
+                @if($question->user_id != auth()->user()->id)
+                    <form class="w-full max-w-lg" method="POST" action="{{ route('answers.create') }}">
+                        @csrf
+
+                        <input type="hidden" name="question" value="{{ $question->uuid }}">
+
+                        <div class="flex flex-wrap -mx-3 mb-2">
+                            <div class="w-full px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                       for="body">
+                                    Add an answer
+                                </label>
+                                <textarea id="body" name="body"
+                                          class="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-24 resize-none"
+                                          required></textarea>
+                            </div>
+                        </div>
+                        <div class="md:flex md:items-center">
+                            <div class="md:w-1/3">
+                                <button type="submit"
+                                        class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                                    Add
+                                </button>
+                            </div>
+                            <div class="md:w-2/3"></div>
+                        </div>
+                    </form>
+                @endif
+
             </div>
         </div>
     </main>

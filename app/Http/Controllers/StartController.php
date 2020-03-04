@@ -21,6 +21,8 @@ class StartController extends Controller
      */
     public function index()
     {
-        return view('start.index');
+        $questions = auth()->user()->questions()->with('user')->orderBy('created_at','desc')->get();
+
+        return view('start.index', compact('questions'));
     }
 }

@@ -5,13 +5,20 @@ return [
    'navigation' => [
 
        'start' => 'Dashboard',
-       'questions' => 'Questions',
+       'associations' => 'Associated questions',
        'profile' => 'Your profile',
        'support' => 'Support',
        'sign_out' => 'Sign out'
    ],
 
     'footer' => [
+
+        'expert' => [
+
+            'title' => 'Expert',
+            'associations' => 'Associated questions',
+        ],
+
 
         'administrator' => [
 
