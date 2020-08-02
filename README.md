@@ -42,7 +42,7 @@ cd docs/finance
 ![Login](https://github.com/StanBarrows/hubofknowledge.ch/blob/master/docs/screens/hok_login.png?raw=true)
 
 ### User
-![Questions](https://github.com/StanBarrows/hubofknowledge.ch/blob/master/docs/screens/hok_expert_associate.png?raw=true)
+![Questions](https://github.com/StanBarrows/hubofknowledge.ch/blob/master/docs/screens/hok_user_questions.png?raw=true)
 
 ### Expert
 ![Associate](https://github.com/StanBarrows/hubofknowledge.ch/blob/master/docs/screens/hok_expert_associate.png?raw=true)
